@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/mvc
+         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 开启注解扫描 -->
+    <context:component-scan base-package="com.huawei.sso"/>
+
+    <!-- 配置springmvc的基本控制器，并开启了对json数据格式的支持 -->
+    <!-- mvc注解驱动：可以代替注解映射器和适配器的配置
+         mvc注解驱动默认加载了很多的参数绑定，比如默认加载json转换解析器
+         如果使用该注解驱动，就不用配置注解映射器和适配器  -->
+    <mvc:annotation-driven/>
+
+    <!-- 对静态资源的访问 -->
+    <mvc:resources mapping="/static/**" location="/WEB-INF/static/" />
+
+    <!-- 配置springmvc的视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>
